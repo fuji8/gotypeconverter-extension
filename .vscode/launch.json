@@ -14,16 +14,18 @@
 			"request": "launch",
 			"name": "Launch Client",
 			"runtimeExecutable": "${execPath}",
+			"trace": true,
 			"args": [
 				"--extensionDevelopmentPath=${workspaceRoot}"
 			],
 			"outFiles": [
 				"${workspaceRoot}/client/out/**/*.js"
 			],
-			"preLaunchTask": {
-				"type": "npm",
-				"script": "watch"
-			},
+			//"preLaunchTask": {
+				//"type": "npm",
+				//"script": "watch"
+			//},
+			"preLaunchTask": "language-server-build"
 		},
 		{
 			"name": "Language Server E2E Test",

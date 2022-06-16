@@ -1,0 +1,17 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "notify, call",
+  "steps": [
+    {
+      "file": "../../../go/pkg/mod/github.com/tliron/glsp@v0.1.1/server/handle.go",
+      "description": "define glsp.Context.Call",
+      "line": 25
+    },
+    {
+      "file": "../../../go/pkg/mod/github.com/tliron/glsp@v0.1.1/server/handle.go",
+      "description": "define glspContext.Notify",
+      "line": 20
+    }
+  ],
+  "ref": "main"
+}
