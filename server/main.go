@@ -22,7 +22,7 @@ func ref[T any](t T) *T {
 
 func main() {
 	// This increases logging verbosity (optional)
-	logging.Configure(1, nil)
+	logging.Configure(2, nil)
 
 	handler = protocol.Handler{
 		Initialize:  initialize,
@@ -30,57 +30,32 @@ func main() {
 		Shutdown:    shutdown,
 		SetTrace:    setTrace,
 		TextDocumentCodeAction: func(context *glsp.Context, params *protocol.CodeActionParams) (interface{}, error) {
-			log.Infof("%#v", context)
-			res := &protocol.CodeAction{
-				Title: "CodeAction-Test",
-				Kind:  ref(protocol.CodeActionKindRefactor),
-				Edit: &protocol.WorkspaceEdit{
-					Changes: map[protocol.DocumentUri][]protocol.TextEdit{
-						params.TextDocument.URI: {
-							{
-								Range: protocol.Range{
-									Start: protocol.Position{
-										Line: 1,
+			if len(params.Context.Only) >= 1 && params.Context.Only[0] == "refactor" {
+				res := &protocol.CodeAction{
+					Title: "CodeAction-Test",
+					Kind:  ref(protocol.CodeActionKindRefactor),
+					Edit: &protocol.WorkspaceEdit{
+						Changes: map[protocol.DocumentUri][]protocol.TextEdit{
+							params.TextDocument.URI: {
+								{
+									Range: protocol.Range{
+										Start: protocol.Position{
+											Line: 1,
+										},
+										End: protocol.Position{
+											Line: 3,
+										},
 									},
-									End: protocol.Position{
-										Line: 3,
-									},
+									NewText: "hogeeee",
 								},
-								NewText: "hogeeee",
 							},
 						},
 					},
-				},
+				}
+				return []interface{}{res}, nil
 			}
-			//context.Notify(protocol.MethodTextDocumentCodeAction, []interface{}{res})
-			return []interface{}{res}, nil
+			return nil, nil
 		},
-		// CodeActionResolve: func(context *glsp.Context, params *protocol.CodeAction) (*protocol.CodeAction, error) {
-		// log.Infof("%#v", params)
-		// return &protocol.CodeAction{
-		// Title: "CodeAction Test",
-		// Kind:  ref(protocol.CodeActionKindRefactor),
-		// Edit: &protocol.WorkspaceEdit{
-		// Changes: map[string][]protocol.TextEdit{
-		// "file:///home/fuji/workspace/lsp/tmp/text": {
-		// {
-		// Range: protocol.Range{
-		// Start: protocol.Position{
-		// Line:      1,
-		// Character: 100,
-		// },
-		// End: protocol.Position{
-		// Line:      3,
-		// Character: 100,
-		// },
-		// },
-		// NewText: "This is best",
-		// },
-		// },
-		// },
-		// },
-		// }, nil
-		// },
 	}
 
 	server := server.NewServer(&handler, lsName, false)
@@ -91,7 +66,7 @@ func main() {
 
 func initialize(context *glsp.Context, params *protocol.InitializeParams) (interface{}, error) {
 	capabilities := handler.CreateServerCapabilities()
-	log.Infof("%#v", capabilities)
+
 	return protocol.InitializeResult{
 		Capabilities: capabilities,
 		ServerInfo: &protocol.InitializeResultServerInfo{
