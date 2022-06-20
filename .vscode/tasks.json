@@ -28,9 +28,6 @@
 			"problemMatcher": [
 				"$tsc-watch"
 			],
-			"dependsOn": [
-				"language-server-build"
-			]
 		},
 		{
 			"label": "language-server-build",
@@ -45,7 +42,11 @@
 			"options": {
 				"cwd": "${workspaceRoot}/server"
 			},
-			"group": "build"
+			"group": "build",
+			"dependsOn":{
+				"type": "npm",
+				"script": "watch"
+			}
 		},
 		{
 			"label": "sleep-delay",

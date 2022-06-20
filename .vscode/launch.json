@@ -21,10 +21,10 @@
 			"outFiles": [
 				"${workspaceRoot}/client/out/**/*.js"
 			],
-			//"preLaunchTask": {
-				//"type": "npm",
-				//"script": "watch"
-			//},
+			// "preLaunchTask": {
+				// "type": "npm",
+				// "script": "watch"
+			// },
 			"preLaunchTask": "language-server-build"
 		},
 		{

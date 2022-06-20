@@ -22,7 +22,7 @@ func ref[T any](t T) *T {
 
 func main() {
 	// This increases logging verbosity (optional)
-	logging.Configure(2, nil)
+	logging.Configure(1, nil)
 
 	handler = protocol.Handler{
 		Initialize:  initialize,
@@ -31,27 +31,38 @@ func main() {
 		SetTrace:    setTrace,
 		TextDocumentCodeAction: func(context *glsp.Context, params *protocol.CodeActionParams) (interface{}, error) {
 			if len(params.Context.Only) >= 1 && params.Context.Only[0] == "refactor" {
+				log.Info("refactor")
+				path := params.TextDocument.URI[7:]
+				newText, rng := SuggestedFix(path, int(params.Range.Start.Line), int(params.Range.Start.Character))
+				// fmt.Println(path)
+				// newText := "hoge"
+				if newText == "" {
+					return nil, nil
+				}
+
 				res := &protocol.CodeAction{
-					Title: "CodeAction-Test",
-					Kind:  ref(protocol.CodeActionKindRefactor),
+					Title: "refactor convert func",
+					Kind:  ref(protocol.CodeActionKindRefactorRewrite),
 					Edit: &protocol.WorkspaceEdit{
 						Changes: map[protocol.DocumentUri][]protocol.TextEdit{
 							params.TextDocument.URI: {
 								{
 									Range: protocol.Range{
 										Start: protocol.Position{
-											Line: 1,
+											Line: rng.Start.Line - 1,
 										},
 										End: protocol.Position{
-											Line: 3,
+											Line:      rng.End.Line,
+											Character: 10000000,
 										},
 									},
-									NewText: "hogeeee",
+									NewText: newText,
 								},
 							},
 						},
 					},
 				}
+				log.Info("soushin")
 				return []interface{}{res}, nil
 			}
 			return nil, nil
