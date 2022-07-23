@@ -5,6 +5,9 @@
 
 import * as path from 'path';
 import { workspace, ExtensionContext } from 'vscode';
+import vscode = require('vscode');
+import util = require('util');
+import cp = require('child_process')
 
 import {
 	LanguageClient,
@@ -15,7 +18,11 @@ import {
 
 let client: LanguageClient;
 
-export function activate(context: ExtensionContext) {
+export async function activate(context: ExtensionContext) {
+	// await vscode.window.showErrorMessage("message", "Install");
+	const execFile = util.promisify(cp.execFile);
+	await execFile("go", ['install', 'github.com/fuji8/gotypeconverter-extension/gotypeconverter-langserver@latest']);
+
 	const cmd = 'gotypeconverter-langserver';
 
 	// If the extension is launched in debug mode then the debug server options are used
