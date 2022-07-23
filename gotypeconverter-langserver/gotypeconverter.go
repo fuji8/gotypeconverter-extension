@@ -31,6 +31,11 @@ func SuggestedFix(path string, line, character int) (string, *protocol.Range) {
 	// aFile, _ := parser.ParseFile(fset, path+"/tmp.go", nil, 0)
 	// get ast.File from package.packgae
 	aFile := pkg.Syntax[0]
+	for i, file := range pkg.CompiledGoFiles {
+		if file == path {
+			aFile = pkg.Syntax[i]
+		}
+	}
 	// get token.File from fset
 	fset.Iterate(func(tFile *token.File) bool {
 		if tFile.Name() != path {
