@@ -16,7 +16,7 @@ import {
 let client: LanguageClient;
 
 export function activate(context: ExtensionContext) {
-	const cmd = '/home/fuji/workspace/lsp/gotypeconverter-extension/server/gotypeconverter-langserver';
+	const cmd = 'gotypeconverter-langserver';
 
 	// If the extension is launched in debug mode then the debug server options are used
 	// Otherwise the run options are used
