@@ -1,4 +1,4 @@
-module github.com/fuji8/gotypeconverter-extension/server
+module github.com/fuji8/gotypeconverter-extension/gotypeconverter-langserver
 
 go 1.18
 
