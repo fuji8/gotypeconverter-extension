@@ -40,7 +40,7 @@
 				"./...",
 			],
 			"options": {
-				"cwd": "${workspaceRoot}/server"
+				"cwd": "${workspaceRoot}/gotypeconverter-langserver"
 			},
 			"group": "build",
 			"dependsOn":{
