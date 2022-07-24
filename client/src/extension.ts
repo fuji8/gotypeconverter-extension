@@ -23,8 +23,8 @@ export async function activate(context: ExtensionContext) {
 	const execFile = util.promisify(cp.execFile);
 	await execFile("go", ['install', 'github.com/fuji8/gotypeconverter-extension/gotypeconverter-langserver@latest']);
 
-	// const cmd = 'gotypeconverter-langserver';
-	const cmd = '/home/fuji/workspace/lsp/gotypeconverter-extension/gotypeconverter-langserver/server';
+	const cmd = 'gotypeconverter-langserver';
+	// const cmd = '/home/fuji/workspace/lsp/gotypeconverter-extension/gotypeconverter-langserver/server';
 
 	// If the extension is launched in debug mode then the debug server options are used
 	// Otherwise the run options are used
