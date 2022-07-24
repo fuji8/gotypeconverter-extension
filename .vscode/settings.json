@@ -4,5 +4,10 @@
 	"typescript.preferences.quoteStyle": "single",
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": true
-	}
+	},
+	"cSpell.words": [
+		"clientrc",
+		"gotypeconverter",
+		"langserver"
+	]
 }
