@@ -21,6 +21,9 @@
 			"outFiles": [
 				"${workspaceRoot}/client/out/**/*.js"
 			],
+			"env": {
+				"NODE_ENV": "debug"
+			},
 			// "preLaunchTask": {
 				// "type": "npm",
 				// "script": "watch"
