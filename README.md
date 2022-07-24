@@ -1,7 +1,7 @@
 # gotypeconverter-extension
 
 ## demo
-https://user-images.githubusercontent.com/40717344/174641275-2854db00-f9dd-4745-b9db-2180e9bb2ad6.mp4
+![demo2_Trim](https://user-images.githubusercontent.com/40717344/180653526-8408576a-5e9f-4467-8696-df26519c53c3.gif)
 
 ## attention!!!
 1. This extension executes the following commands at startup.
