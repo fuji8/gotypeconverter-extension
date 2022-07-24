@@ -3,7 +3,7 @@
 	"description": "gotypeconverter extension",
 	"author": "fuji8",
 	"license": "MIT",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/fuji8/gotypeconverter-extension"
