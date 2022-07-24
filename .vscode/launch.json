@@ -7,7 +7,7 @@
 			"type": "go",
 			"request": "attach",
 			"mode": "local",
-			"processId": "gotypeconverter", // ignore words after "-"
+			"processId": "server", // ignore words after "-"
 		},
 		{
 			"type": "extensionHost",

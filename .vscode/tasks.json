@@ -36,7 +36,7 @@
 			"args": [
 				"build",
 				"-o",
-				"gotypeconverter-langserver",
+				"server",
 				"./...",
 			],
 			"options": {
