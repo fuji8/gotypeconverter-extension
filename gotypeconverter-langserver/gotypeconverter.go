@@ -64,7 +64,7 @@ func SuggestedFix(path string, line, character int) (string, *protocol.Range) {
 	}
 
 	fn := ana.InitFuncMaker(pkg.Types)
-	fn.MakeFunc(ana.InitType(dstType, "src"), ana.InitType(srcType, ""))
+	fn.MakeFunc(ana.InitType(dstType, ""), ana.InitType(srcType, ""))
 
 	buf := &bytes.Buffer{}
 	buf.Write(fn.WriteBytes())

@@ -31,11 +31,8 @@ func main() {
 		SetTrace:    setTrace,
 		TextDocumentCodeAction: func(context *glsp.Context, params *protocol.CodeActionParams) (interface{}, error) {
 			if len(params.Context.Only) >= 1 && params.Context.Only[0] == "refactor" {
-				log.Info("refactor")
 				path := params.TextDocument.URI[7:]
 				newText, rng := SuggestedFix(path, int(params.Range.Start.Line), int(params.Range.Start.Character))
-				// fmt.Println(path)
-				// newText := "hoge"
 				if newText == "" {
 					return nil, nil
 				}
@@ -52,7 +49,7 @@ func main() {
 											Line: rng.Start.Line - 1,
 										},
 										End: protocol.Position{
-											Line:      rng.End.Line,
+											Line:      rng.End.Line - 1,
 											Character: 10000000,
 										},
 									},
@@ -62,7 +59,6 @@ func main() {
 						},
 					},
 				}
-				log.Info("soushin")
 				return []interface{}{res}, nil
 			}
 			return nil, nil
